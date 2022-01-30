@@ -111,7 +111,7 @@ def removeStopwords( wordsDict ):
             word = word.lower()
             mfw.append( word.strip() )
     except:
-        print("Cannot read the list of stopwords!")
+        print("Cannot read the list of stopwords! Is the mfw.txt file in the folder with the code?")
 
     for w in wordsDict:
         if not( w in mfw ):
@@ -405,6 +405,7 @@ def showTitle( book ):
     book = re.sub( '\.xml$' , '' , book )
     book = re.sub( '\.txt$' , '' , book )
     book = book.strip()
+    print(f"BOOKTEST: {book}")
     global metadata
     if len(metadata) == 0:
         readMetadata()
@@ -430,10 +431,12 @@ def showTitle( book ):
 def showYear( book ):
     book = re.sub( '\.xml$' , '' , book )
     book = re.sub( '\.txt$' , '' , book )
+    book = book.strip()
     global metadata
     if len(metadata) == 0:
         readMetadata()
 
+    return book, metadata
     return metadata[ book ][0]
 
 
