@@ -405,7 +405,6 @@ def showTitle( book ):
     book = re.sub( '\.xml$' , '' , book )
     book = re.sub( '\.txt$' , '' , book )
     book = book.strip()
-    print(f"BOOKTEST: {book}")
     global metadata
     if len(metadata) == 0:
         readMetadata()
@@ -415,7 +414,6 @@ def showTitle( book ):
     title = ''
 
     if book in metadata:
-        #print('Yes')
         title = metadata[ book ][2]
         if re.search( '\d' , metadata[ book ][0] ):
             title += ' (' + metadata[ book ][0]  + ')'
@@ -436,8 +434,10 @@ def showYear( book ):
     if len(metadata) == 0:
         readMetadata()
 
-    return book, metadata
-    return metadata[ book ][0]
+#     return book, metadata
+    if book in metadata:
+        return metadata[ book ][0]
+    return ""
 
 
 
